@@ -1,7 +1,21 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import logo from './logo.svg';
-import './App.css';
+import './CSS/App.css';
+import Student from './Pages/Student';
 
-function App() {
+
+function Home() {
+  const navigate = useNavigate();
+
+  const goToStudentPage = () => {
+    navigate('/student');
+  };
+
+  const goToInstructorPage = () => {
+    alert('Instructor page not implemented yet');
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -9,16 +23,39 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+
+        <div className="button-group-vertical">
+          <button className="styled-button" onClick={goToStudentPage}>
+            STUDENT
+          </button>
+          <button className="styled-button" onClick={goToInstructorPage}>
+            INSTRUCTOR
+         </button>
+        </div>
+
+
         <a
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React bullshit
         </a>
       </header>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/student" element={<Student />} />
+        {/* You can add more routes here */}
+      </Routes>
+    </Router>
   );
 }
 
