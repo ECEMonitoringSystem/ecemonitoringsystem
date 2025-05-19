@@ -1,3 +1,4 @@
+/* Default: Light mode styles */
 .App {
   text-align: center;
 }
@@ -14,18 +15,18 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #f0f0f0; /* Light background */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #222; /* Dark text */
 }
 
 .App-link {
-  color: #61dafb;
+  color: #007acc;
 }
 
 @keyframes App-logo-spin {
@@ -66,3 +67,45 @@
   border-color: black;
 }
 
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .App-header {
+    background-color: #282c34; /* Dark background */
+    color: white;              /* Light text */
+  }
+
+  .styled-button {
+    background-color: #444;    /* Darker button background */
+    color: white;
+    border-color: #ccc;
+  }
+
+  .styled-button:hover {
+    background-color: #222;
+    color: white;
+    border-color: white;
+  }
+
+  .App-link {
+    color: #61dafb;
+  }
+}
+
+/* Light mode button and link styles */
+@media (prefers-color-scheme: light) {
+  .styled-button {
+    background-color: white;
+    color: black;
+    border-color: black;
+  }
+
+  .styled-button:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+  }
+
+  .App-link {
+    color: #007acc;
+  }
+}

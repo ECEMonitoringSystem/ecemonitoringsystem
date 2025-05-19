@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import logo from './logo.svg';
+import logo from '././Images/logo.png';
 import './CSS/App.css';
 import Student from './Pages/Student';
 
@@ -20,9 +20,6 @@ function Home() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
 
         <div className="button-group-vertical">
           <button className="styled-button" onClick={goToStudentPage}>
