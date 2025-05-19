@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import logo from '././Images/logo.png';
 import './CSS/App.css';
 import Student from './Pages/Student';
+import Instructor from './Pages/Instructor';
 
 
 function Home() {
@@ -13,7 +14,7 @@ function Home() {
   };
 
   const goToInstructorPage = () => {
-    alert('Instructor page not implemented yet');
+    navigate('/instructor');
   };
 
   return (
@@ -50,6 +51,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/student" element={<Student />} />
+        <Route path="/instructor" element={<Instructor />} />
         {/* You can add more routes here */}
       </Routes>
     </Router>

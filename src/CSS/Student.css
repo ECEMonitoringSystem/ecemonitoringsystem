@@ -1,0 +1,12 @@
+/* Student.css */
+.student-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* vertical center */
+    align-items: center;     /* horizontal center */
+    height: 100vh;           /* full viewport height */
+    text-align: center;      /* center text inside */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
