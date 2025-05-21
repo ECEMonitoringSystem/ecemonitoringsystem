@@ -1,13 +1,33 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* index.css */
+
+/* Light mode variables */
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --form-bg: #f9f9f9;
+  --input-bg: #ffffff;
+  --input-border: #ccc;
+  --button-bg: #007bff;
+  --button-hover-bg: #0056b3;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Dark mode variables applied when .dark class on html and body */
+html.dark, body.dark {
+  --background-color: #121212;
+  --text-color: #ffffff;
+  --form-bg: #1e1e1e;
+  --input-bg: #333333;
+  --input-border: #555555;
+  --button-bg: #3399ff;
+  --button-hover-bg: #007acc;
+}
+
+/* Apply background and text color to whole page */
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: Arial, sans-serif;
 }

@@ -1,31 +1,5 @@
 /* Instructor.css */
 
-/* Root CSS variables for light mode */
-:root {
-  --background-color: #ffffff;
-  --text-color: #000000;
-  --input-bg: #fff;
-  --input-border: #ccc;
-  --button-bg: #007bff;
-  --button-hover-bg: #0056b3;
-  --link-color: #007bff;
-  --link-hover-color: #0056b3;
-}
-
-/* Dark mode variables */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background-color: #121212;
-    --text-color: #ffffff;
-    --input-bg: #1e1e1e;
-    --input-border: #555;
-    --button-bg: #3399ff;
-    --button-hover-bg: #007acc;
-    --link-color: #3399ff;
-    --link-hover-color: #007acc;
-  }
-}
-
 /* Container styles */
 .instructor-container {
   display: flex;
@@ -48,6 +22,11 @@
   max-width: 400px;
   gap: 12px;
   margin-top: 20px;
+  background-color: var(--form-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 .login-form input {

@@ -1,22 +1,106 @@
-/* Base styles (light mode by default) */
+/* Student.css */
+
+/* Container aligns content to the left with padding */
 .student-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center;     /* horizontal center */
-  height: 100vh;           /* full viewport height */
-  text-align: center;      /* center text inside */
-  padding: 20px;
-  box-sizing: border-box;
-  background-color: #ffffff; /* light background */
-  color: #000000;            /* dark text */
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto; /* center container horizontally */
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
-/* Dark mode styles */
-@media (prefers-color-scheme: dark) {
-  .student-container {
-    background-color: #121212; /* dark background */
-    color: #ffffff;            /* light text */
-  }
+/* Header text centered */
+.header-text {
+  text-align: center;
+  margin-bottom: 20px; /* space below header */
+}
+
+/* Form styling */
+.student-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+  background-color: var(--form-bg);
+  padding: 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Each form group stacks label above input */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Label styling */
+.form-group label {
+  font-weight: bold;
+  font-size: 16px;
+  color: inherit;
+}
+
+/* Input styling */
+.form-group input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1.5px solid var(--input-border);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-group input:focus {
+  border-color: var(--button-bg);
+}
+
+/* Date input padding adjustment */
+.form-group input[type="date"] {
+  padding-top: 9px;
+}
+
+/* Style the calendar icon in the date input (WebKit browsers) */
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: var(--date-icon-filter, none);
+  transition: filter 0.3s ease;
+}
+
+/* Default (light mode) icon filter */
+:root {
+  --date-icon-filter: none;
+}
+
+/* Dark mode icon filter */
+body.dark, html.dark {
+  --date-icon-filter: invert(1) brightness(0.8);
+}
+
+/* Submit button styling - smaller size */
+.student-form button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: var(--button-bg);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+  margin-top: 10px;
+  align-self: center;
+}
+
+.student-form button:hover {
+  background-color: var(--button-hover-bg);
 }
