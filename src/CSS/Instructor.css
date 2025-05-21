@@ -1,11 +1,103 @@
 /* Instructor.css */
-.instructor-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* vertical center */
-    align-items: center;     /* horizontal center */
-    height: 100vh;           /* full viewport height */
-    text-align: center;      /* center text inside */
-    padding: 20px;
-    box-sizing: border-box;
+
+/* Root CSS variables for light mode */
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --input-bg: #fff;
+  --input-border: #ccc;
+  --button-bg: #007bff;
+  --button-hover-bg: #0056b3;
+  --link-color: #007bff;
+  --link-hover-color: #0056b3;
+}
+
+/* Dark mode variables */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --input-bg: #1e1e1e;
+    --input-border: #555;
+    --button-bg: #3399ff;
+    --button-hover-bg: #007acc;
+    --link-color: #3399ff;
+    --link-hover-color: #007acc;
   }
+}
+
+/* Container styles */
+.instructor-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  height: 100vh;           /* full viewport height */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  text-align: center;
+}
+
+/* Login form styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.login-form input {
+  padding: 10px;
+  font-size: 16px;
+  background-color: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: 4px;
+  outline: none;
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+.login-form input:focus {
+  border-color: var(--button-bg);
+}
+
+.login-form button {
+  padding: 12px;
+  font-size: 16px;
+  background-color: var(--button-bg);
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form button:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.login-links {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  width: 100%;
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.link-button:hover {
+  color: var(--link-hover-color);
+}

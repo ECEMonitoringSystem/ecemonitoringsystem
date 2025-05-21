@@ -1,12 +1,22 @@
-/* Student.css */
+/* Base styles (light mode by default) */
 .student-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* vertical center */
-    align-items: center;     /* horizontal center */
-    height: 100vh;           /* full viewport height */
-    text-align: center;      /* center text inside */
-    padding: 20px;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  height: 100vh;           /* full viewport height */
+  text-align: center;      /* center text inside */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #ffffff; /* light background */
+  color: #000000;            /* dark text */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .student-container {
+    background-color: #121212; /* dark background */
+    color: #ffffff;            /* light text */
   }
-  
+}
