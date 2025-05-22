@@ -1,5 +1,5 @@
-// src/Student.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../CSS/Student.css';
 
 function Student() {
@@ -11,6 +11,8 @@ function Student() {
     date: '',
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -18,8 +20,7 @@ function Student() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Submitted data:\n${JSON.stringify(formData, null, 2)}`);
-    // Add your submission logic here
+    navigate('/instructors-list'); // Navigate to the instructors list page
   };
 
   return (
@@ -41,7 +42,6 @@ function Student() {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="yearSection">Year & Section</label>
           <input
@@ -53,7 +53,6 @@ function Student() {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="program">Program</label>
           <input
@@ -65,7 +64,6 @@ function Student() {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
@@ -77,7 +75,6 @@ function Student() {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="date">Date</label>
           <input
@@ -89,7 +86,6 @@ function Student() {
             required
           />
         </div>
-
         <button type="submit">Submit</button>
       </form>
     </div>

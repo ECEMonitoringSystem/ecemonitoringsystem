@@ -1,0 +1,44 @@
+/* src/CSS/InstructorsList.css */
+.instructors-list {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .instructors-list h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .instructors-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .instructors-list li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: var(--form-bg);
+    border-radius: 4px;
+  }
+  
+  .instructors-list button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: var(--button-bg);
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+  }
+  
+  .instructors-list button:hover {
+    background-color: var(--button-hover-bg);
+  }
+  

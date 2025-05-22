@@ -4,6 +4,7 @@ import logo from '././Images/logo.png';
 import './CSS/App.css';
 import Student from './Pages/Student';
 import Instructor from './Pages/Instructor';
+import InstructorsList from './Pages/InstructorsList';
 
 function Home() {
   const navigate = useNavigate();
@@ -80,6 +81,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/student" element={<Student />} />
         <Route path="/instructor" element={<Instructor />} />
+        <Route path="/instructors-list" element={<InstructorsList />} />
       </Routes>
     </Router>
   );
