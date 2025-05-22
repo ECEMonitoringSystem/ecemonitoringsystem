@@ -1,12 +1,12 @@
-// src/Pages/InstructorsList.js
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../CSS/InstructorsList.css';
 
 function InstructorsList() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const studentName = location.state?.studentName || 'Student';
 
-  // Example instructors data
   const instructors = [
     { id: 1, name: 'Dr. Smith', subject: 'Mathematics' },
     { id: 2, name: 'Prof. Lee', subject: 'Physics' },
@@ -15,7 +15,8 @@ function InstructorsList() {
 
   return (
     <div className="instructors-list">
-      <h2>Available Instructors</h2>
+      <h2>Hi, {studentName}!</h2>
+      <p>Available Instructors</p>
       <ul>
         {instructors.map(instructor => (
           <li key={instructor.id}>

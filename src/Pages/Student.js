@@ -20,7 +20,7 @@ function Student() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/instructors-list'); // Navigate to the instructors list page
+    navigate('/instructors-list', { state: { studentName: formData.name } });
   };
 
   return (
