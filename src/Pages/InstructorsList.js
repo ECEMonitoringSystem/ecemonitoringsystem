@@ -15,8 +15,7 @@ function InstructorsList() {
   ];
 
   const handleProfileClick = (instructor) => {
-    alert(`Profile of ${instructor.name}`);
-    // Or navigate(`/instructor/${instructor.id}`);
+    navigate(`/instructor/${instructor.id}`);
   };
 
   return (
