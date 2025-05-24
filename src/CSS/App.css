@@ -40,7 +40,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 60vmin;
   pointer-events: none;
   animation: App-logo-spin infinite 20s linear;
 }
@@ -49,6 +49,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
