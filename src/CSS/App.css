@@ -35,10 +35,6 @@
   border-color: var(--button-hover-bg);
 }
 
-.App-link {
-  color: var(--link-color, var(--button-bg));
-}
-
 .App-logo {
   height: 60vmin;
   pointer-events: none;

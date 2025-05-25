@@ -32,14 +32,6 @@ function Home() {
           </button>
         </div>
 
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React bullshit
-        </a>
       </header>
     </div>
   );
