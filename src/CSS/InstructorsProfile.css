@@ -124,3 +124,43 @@
 .modal-close-button {
   margin-top: 20px;
 }
+
+/* Appointment Form Styles */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.appointment-input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  box-sizing: border-box;
+}
+
+.appointment-input:focus {
+  border-color: var(--button-bg);
+  outline: none;
+}
+
+/* Modal Buttons Container */
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+.modal-buttons .profile-button {
+  flex: 1 1 0;
+  min-width: 0;
+  text-align: center;
+}

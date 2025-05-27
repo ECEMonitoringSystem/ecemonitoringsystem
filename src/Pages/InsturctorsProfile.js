@@ -23,12 +23,29 @@ function InstructorsProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
+  const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
+  const [appointmentForm, setAppointmentForm] = useState({
+    concerns: '',
+    schedule: ''
+  });
 
   const instructor = instructors.find(i => i.id === parseInt(id));
 
   if (!instructor) {
     return <div>Instructor not found</div>;
   }
+
+  const handleAppointmentChange = (e) => {
+    const { name, value } = e.target;
+    setAppointmentForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleAppointmentSubmit = (e) => {
+    e.preventDefault();
+    alert(`Appointment set with ${instructor.name}!\nConcerns: ${appointmentForm.concerns}\nSchedule: ${appointmentForm.schedule}`);
+    setIsAppointmentModalOpen(false);
+    setAppointmentForm({ concerns: '', schedule: '' });
+  };
 
   return (
     <div className="instructors-profile-page">
@@ -50,7 +67,7 @@ function InstructorsProfile() {
           Class Schedule
         </button>
         <button
-          onClick={() => alert('Set an appointment with ' + instructor.name)}
+          onClick={() => setIsAppointmentModalOpen(true)}
           className="profile-button"
         >
           Set an Appointment
@@ -96,6 +113,53 @@ function InstructorsProfile() {
             >
               Close
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Appointment Modal */}
+      {isAppointmentModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Set an Appointment with {instructor.name}</h3>
+            <form onSubmit={handleAppointmentSubmit}>
+              <div className="form-group">
+                <label htmlFor="concerns">Concerns</label>
+                <textarea
+                  id="concerns"
+                  name="concerns"
+                  value={appointmentForm.concerns}
+                  onChange={handleAppointmentChange}
+                  required
+                  rows="3"
+                  className="appointment-input"
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="schedule">Schedule</label>
+                <input
+                  type="datetime-local"
+                  id="schedule"
+                  name="schedule"
+                  value={appointmentForm.schedule}
+                  onChange={handleAppointmentChange}
+                  required
+                  className="appointment-input"
+                />
+              </div>
+              <div className="modal-buttons">
+                <button type="submit" className="profile-button">
+                  Submit
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setIsAppointmentModalOpen(false)}
+                  className="profile-button"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
