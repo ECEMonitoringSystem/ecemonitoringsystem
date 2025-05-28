@@ -1,5 +1,3 @@
-/* src/CSS/InstructorsList.css */
-
 .instructors-list {
   max-width: 600px;
   margin: 40px auto;
@@ -53,6 +51,11 @@
   opacity: 0.9;
 }
 
+.profile-image-container {
+  position: relative;
+  display: inline-block;
+}
+
 .instructor-profile {
   width: 120px;
   height: 120px;
@@ -82,4 +85,21 @@
 
 .back-button:hover {
   background-color: var(--button-hover-bg);
+}
+
+.indicator {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--background-color);
+  box-sizing: border-box;
+}
+.indicator.inside {
+  background-color: #4CAF50; /* Green */
+}
+.indicator.outside {
+  background-color: #F44336; /* Red */
 }
