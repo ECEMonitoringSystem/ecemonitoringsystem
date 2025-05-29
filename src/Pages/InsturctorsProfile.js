@@ -170,7 +170,7 @@ function InstructorsProfile() {
                   value={appointmentForm.schedule}
                   onChange={handleAppointmentChange}
                   required
-                  className="appointment-input"
+                  className="appointment-input custom-date-picker"
                 />
               </div>
               <div className="modal-buttons">
