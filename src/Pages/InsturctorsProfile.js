@@ -4,9 +4,9 @@ import '../CSS/InstructorsProfile.css';
 import profileImg from '../Images/profile.png';
 
 const instructors = [
-  { id: 1, name: 'Dr. Smith', subject: 'Mathematics' },
-  { id: 2, name: 'Prof. Lee', subject: 'Physics' },
-  { id: 3, name: 'Dr. Garcia', subject: 'Computer Science' }
+  { id: 1, name: 'Dr. Smith', subject: 'Mathematics', isInsideOffice: true, isInClass: false },
+  { id: 2, name: 'Prof. Lee', subject: 'Physics', isInsideOffice: false, isInClass: false },
+  { id: 3, name: 'Dr. Garcia', subject: 'Computer Science', isInsideOffice: true, isInClass: true }
 ];
 
 const timetable = {
@@ -49,15 +49,41 @@ function InstructorsProfile() {
 
   return (
     <div className="instructors-profile-page">
-      <img
-        src={profileImg}
-        alt={instructor.name}
-        className="instructors-profile-image"
-      />
+      <div className="profile-image-container">
+        <img
+          src={profileImg}
+          alt={instructor.name}
+          className="instructors-profile-image"
+        />
+        <span
+          className={`indicator1 ${
+            instructor.isInClass
+              ? 'in-class'
+              : instructor.isInsideOffice
+              ? 'inside'
+              : 'outside'
+          }`}
+          title={
+            instructor.isInClass
+              ? 'In class'
+              : instructor.isInsideOffice
+              ? 'Inside office'
+              : 'Outside office'
+          }
+        />
+      </div>
       <h2>{instructor.name}</h2>
       <p>Subject: {instructor.subject}</p>
-      <div className="profile-button status-label">
-        Status: having class
+      <div
+        className={`status ${
+          instructor.isInClass
+            ? 'status-in-class'
+            : instructor.isInsideOffice
+            ? 'status-inside'
+            : 'status-outside'
+        }`}
+      >
+        Status: {instructor.isInClass ? 'In Class' : instructor.isInsideOffice ? 'Inside Office' : 'Outside Office'}
       </div>
       <div className="instructors-profile-buttons">
         <button

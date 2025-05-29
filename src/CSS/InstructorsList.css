@@ -103,3 +103,7 @@
 .indicator.outside {
   background-color: #F44336; /* Red */
 }
+.indicator.in-class {
+  background-color: #2196F3; /* Blue */
+}
+

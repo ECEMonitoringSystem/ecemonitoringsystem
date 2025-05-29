@@ -9,6 +9,11 @@
   text-align: center;
 }
 
+.profile-image-container {
+  position: relative;
+  display: inline-block;
+}
+
 .instructors-profile-image {
   width: 120px;
   height: 120px;
@@ -17,11 +22,46 @@
   margin-bottom: 20px;
 }
 
+.indicator1 {
+  position: absolute;
+  bottom: 25px;
+  right: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--background-color);
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.indicator1.inside {
+  background-color: #4CAF50; /* Green */
+}
+
+.indicator1.outside {
+  background-color: #F44336; /* Red */
+}
+
+.indicator1.in-class {
+  background-color: #2196F3; /* Blue */
+}
+
 .instructors-profile-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
   margin: 20px 0;
+}
+
+.status {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: var(--button-bg);
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  margin: 5px 0;
 }
 
 .profile-button {
@@ -44,6 +84,28 @@
 .status-label {
   cursor: default;
   user-select: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+/* Status box colors */
+.status-inside {
+  color: #e6f4ea;
+  background-color: #4CAF50;
+}
+
+.status-outside {
+  color: #fbe9e7;
+  background-color: #F44336;
+}
+
+.status-in-class {
+  color: #e3f2fd;
+  background-color: #2196F3;
 }
 
 .back-button {
@@ -159,6 +221,7 @@
   gap: 10px;
   margin-top: 15px;
 }
+
 .modal-buttons .profile-button {
   flex: 1 1 0;
   min-width: 0;

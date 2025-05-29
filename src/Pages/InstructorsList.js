@@ -9,9 +9,9 @@ function InstructorsList() {
   const studentName = location.state?.studentName || 'Student';
 
   const instructors = [
-    { id: 1, name: 'Dr. Smith', subject: 'Mathematics', isInsideOffice: true },
-    { id: 2, name: 'Prof. Lee', subject: 'Physics', isInsideOffice: false },
-    { id: 3, name: 'Dr. Garcia', subject: 'Computer Science', isInsideOffice: true }
+    { id: 1, name: 'Dr. Smith', subject: 'Mathematics', isInsideOffice: true, isInClass: false },
+    { id: 2, name: 'Prof. Lee', subject: 'Physics', isInsideOffice: false, isInClass: false },
+    { id: 3, name: 'Dr. Garcia', subject: 'Computer Science', isInsideOffice: true, isInClass: true }
   ];
 
   const handleProfileClick = (instructor) => {
@@ -36,8 +36,21 @@ function InstructorsList() {
                   className="instructor-profile"
                 />
                 <span
-                  className={`indicator ${instructor.isInsideOffice ? 'inside' : 'outside'}`}
-                  title={instructor.isInsideOffice ? 'Inside office' : 'Outside office'}
+                  className={`indicator ${
+                    instructor.isInClass
+                      ? 'in-class'
+                      : instructor.isInsideOffice
+                      ? 'inside'
+                      : 'outside'
+                  }`}
+
+                  title={
+                    instructor.isInClass
+                      ? 'In class'
+                      : instructor.isInsideOffice
+                      ? 'Inside office'
+                      : 'Outside office'
+                    } 
                 ></span>
               </div>
               <div className="instructor-info">
