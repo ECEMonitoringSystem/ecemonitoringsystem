@@ -1,3 +1,4 @@
+// Student.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Student.css';
@@ -20,7 +21,8 @@ function Student() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate('/instructors-list', { state: { studentName: formData.name } });
+    // Pass both studentName and studentEmail to instructors list page
+    navigate('/instructors-list', { state: { studentName: formData.name, studentEmail: formData.email } });
   };
 
   return (

@@ -6,7 +6,10 @@ import profileImg from '../Images/profile.png';
 function InstructorsList() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Get student info from location.state or fallback to 'Student'
   const studentName = location.state?.studentName || 'Student';
+  const studentEmail = location.state?.studentEmail || '';
 
   const instructors = [
     { id: 1, name: 'Dr. Smith', subject: 'Mathematics', isInsideOffice: true, isInClass: false },
@@ -15,7 +18,8 @@ function InstructorsList() {
   ];
 
   const handleProfileClick = (instructor) => {
-    navigate(`/instructor/${instructor.id}`);
+    // Pass student info forward when navigating to instructor profile
+    navigate(`/instructor/${instructor.id}`, { state: { studentName, studentEmail } });
   };
 
   return (
@@ -36,21 +40,19 @@ function InstructorsList() {
                   className="instructor-profile"
                 />
                 <span
-                  className={`indicator ${
-                    instructor.isInClass
-                      ? 'in-class'
-                      : instructor.isInsideOffice
+                  className={`indicator ${instructor.isInClass
+                    ? 'in-class'
+                    : instructor.isInsideOffice
                       ? 'inside'
                       : 'outside'
-                  }`}
-
+                    }`}
                   title={
                     instructor.isInClass
                       ? 'In class'
                       : instructor.isInsideOffice
-                      ? 'Inside office'
-                      : 'Outside office'
-                    } 
+                        ? 'Inside office'
+                        : 'Outside office'
+                  }
                 ></span>
               </div>
               <div className="instructor-info">

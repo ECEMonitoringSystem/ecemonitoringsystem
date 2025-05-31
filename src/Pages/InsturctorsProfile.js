@@ -1,5 +1,6 @@
+// InstructorsProfile.js
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import '../CSS/InstructorsProfile.css';
 import profileImg from '../Images/profile.png';
 
@@ -22,6 +23,11 @@ const timetable = {
 function InstructorsProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Extract student info from location state
+  const { studentName, studentEmail } = location.state || {};
+
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
   const [appointmentForm, setAppointmentForm] = useState({
@@ -42,7 +48,13 @@ function InstructorsProfile() {
 
   const handleAppointmentSubmit = (e) => {
     e.preventDefault();
-    alert(`Appointment set with ${instructor.name}!\nConcerns: ${appointmentForm.concerns}\nSchedule: ${appointmentForm.schedule}`);
+    alert(
+      `Student Name: ${studentName || 'N/A'}\n` +
+      `Student Email: ${studentEmail || 'N/A'}\n` +
+      `Appointment set with ${instructor.name}!\n` +
+      `Concerns: ${appointmentForm.concerns}\n` +
+      `Schedule: ${appointmentForm.schedule}\n`
+    );
     setIsAppointmentModalOpen(false);
     setAppointmentForm({ concerns: '', schedule: '' });
   };
@@ -56,32 +68,30 @@ function InstructorsProfile() {
           className="instructors-profile-image"
         />
         <span
-          className={`indicator1 ${
-            instructor.isInClass
-              ? 'in-class'
-              : instructor.isInsideOffice
+          className={`indicator1 ${instructor.isInClass
+            ? 'in-class'
+            : instructor.isInsideOffice
               ? 'inside'
               : 'outside'
-          }`}
+            }`}
           title={
             instructor.isInClass
               ? 'In class'
               : instructor.isInsideOffice
-              ? 'Inside office'
-              : 'Outside office'
+                ? 'Inside office'
+                : 'Outside office'
           }
         />
       </div>
       <h2>{instructor.name}</h2>
       <p>Subject: {instructor.subject}</p>
       <div
-        className={`status ${
-          instructor.isInClass
-            ? 'status-in-class'
-            : instructor.isInsideOffice
+        className={`status ${instructor.isInClass
+          ? 'status-in-class'
+          : instructor.isInsideOffice
             ? 'status-inside'
             : 'status-outside'
-        }`}
+          }`}
       >
         Status: {instructor.isInClass ? 'In Class' : instructor.isInsideOffice ? 'Inside Office' : 'Outside Office'}
       </div>
