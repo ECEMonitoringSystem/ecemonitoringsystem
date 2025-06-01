@@ -9,7 +9,6 @@ function Student() {
     yearSection: '',
     program: '',
     email: '',
-    date: '',
   });
 
   const navigate = useNavigate();
@@ -73,17 +72,6 @@ function Student() {
             id="email"
             name="email"
             value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            id="date"
-            name="date"
-            value={formData.date}
             onChange={handleChange}
             required
           />
