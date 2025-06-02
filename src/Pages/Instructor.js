@@ -1,5 +1,5 @@
-// src/Instructor.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../CSS/Instructor.css';
 
 function Instructor() {
@@ -14,14 +14,50 @@ function Instructor() {
     name: '',
   });
 
+  const navigate = useNavigate(); // Initialize navigate
+
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Submitting ${view} form with data:\n${JSON.stringify(formData, null, 2)}`);
-    // Here you can add your API call or authentication logic
+
+    if (view === 'login') {
+      if (formData.email && formData.password) {
+        // Navigate to instructor profile page, passing email or id as param or state
+        navigate(`/profile-instructors/${encodeURIComponent(formData.email)}`, { state: { email: formData.email } });
+      } else {
+        alert('Please enter email and password.');
+      }
+    } else if (view === 'register') {
+      // Basic validation for registration
+      if (
+        formData.name.trim() &&
+        formData.email.trim() &&
+        formData.password &&
+        formData.confirmPassword
+      ) {
+        if (formData.password === formData.confirmPassword) {
+          // Registration success simulation
+          alert('Registration successful! Please log in.');
+          setFormData({
+            email: '',
+            password: '',
+            confirmPassword: '',
+            name: '',
+          });
+          setView('login');
+        } else {
+          alert('Passwords do not match.');
+        }
+      } else {
+        alert('Please fill in all fields.');
+      }
+    } else {
+      // For 'forgot' or other views, you can add your logic or keep alert for now
+      alert(`Submitting ${view} form with data:\n${JSON.stringify(formData, null, 2)}`);
+    }
   };
 
   if (view === 'login') {
