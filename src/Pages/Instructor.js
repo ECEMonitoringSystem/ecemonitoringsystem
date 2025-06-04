@@ -26,7 +26,7 @@ function Instructor() {
     if (view === 'login') {
       if (formData.email && formData.password) {
         // Navigate to instructor profile page, passing email or id as param or state
-        navigate(`/profile-instructors/${encodeURIComponent(formData.email)}`, { state: { email: formData.email } });
+        navigate(`/list-instructors/${encodeURIComponent(formData.email)}`, { state: { email: formData.email } });
       } else {
         alert('Please enter email and password.');
       }

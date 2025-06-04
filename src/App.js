@@ -6,7 +6,7 @@ import Student from './Pages/Student';
 import Instructor from './Pages/Instructor';
 import InstructorsList from './Pages/InstructorsList';
 import InstructorsProfile from './Pages/InstructorsProfile'; // fixed typo from InsturctorsProfile
-import ProfileInstructors from './Pages/ProfileInstructors';
+import ListInstructors from './Pages/ListInstructors'; // renamed import
 
 function Home() {
   const navigate = useNavigate();
@@ -77,7 +77,7 @@ function App() {
         <Route path="/instructor" element={<Instructor />} />
         <Route path="/instructors-list" element={<InstructorsList />} />
         <Route path="/instructor/:id" element={<InstructorsProfile />} />
-        <Route path="/profile-instructors/:email" element={<ProfileInstructors />} />
+        <Route path="/list-instructors/:email" element={<ListInstructors />} /> {/* updated route */}
       </Routes>
     </Router>
   );
