@@ -12,6 +12,9 @@
   background-color: var(--background-color);
   color: var(--text-color);
   text-align: center;
+
+  /* Hint browser to adapt native controls (like password toggle) */
+  color-scheme: light dark;
 }
 
 /* Login form styles */
@@ -27,6 +30,9 @@
   border-radius: 8px;
   box-sizing: border-box;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+  /* Hint browser to adapt native controls */
+  color-scheme: light dark;
 }
 
 .login-form input {
@@ -38,6 +44,9 @@
   outline: none;
   color: var(--text-color);
   transition: border-color 0.3s ease;
+
+  /* Hint browser to adapt native controls */
+  color-scheme: light dark;
 }
 
 .login-form input:focus {
@@ -79,4 +88,32 @@
 
 .link-button:hover {
   color: var(--link-hover-color);
+}
+
+/* Optional: support prefers-color-scheme media query for better dark mode support */
+@media (prefers-color-scheme: dark) {
+  .instructor-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+  .login-form {
+    background-color: var(--form-bg);
+  }
+  .login-form input {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--input-border);
+  }
+  .login-form button {
+    background-color: var(--button-bg);
+  }
+  .login-form button:hover {
+    background-color: var(--button-hover-bg);
+  }
+  .link-button {
+    color: var(--link-color);
+  }
+  .link-button:hover {
+    color: var(--link-hover-color);
+  }
 }
