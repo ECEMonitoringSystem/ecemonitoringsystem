@@ -1,16 +1,11 @@
 import React from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import profileImg from '../Images/profile.png';
 import '../CSS/InstructorsList.css'; // reuse your existing CSS
 
 function ListInstructors() {
-  const { email } = useParams();
-  const location = useLocation();
   const navigate = useNavigate();
 
-  // Get student info from location.state or fallback
-  const studentName = location.state?.studentName || 'Student';
-  const studentEmail = location.state?.studentEmail || '';
 
   // Sample instructors data
   const instructors = [
@@ -21,16 +16,11 @@ function ListInstructors() {
 
   const handleProfileClick = (instructor) => {
     // Navigate to the instructor profile page with student info
-    navigate(`/instructor/${instructor.id}`, { state: { studentName, studentEmail } });
+    navigate(`/instructor/${instructor.id}`);
   };
 
   return (
     <div className="instructors-list">
-      <h1>Instructor Profile</h1>
-      <p>Email: {email}</p>
-
-      <h2>Hi, {studentName}!</h2>
-      <p>Available Instructors</p>
       <ul>
         {instructors.map(instructor => (
           <li key={instructor.id} className="instructor-item">
