@@ -59,10 +59,10 @@ function ListInstructors() {
       </ul>
 
       <button
-        onClick={() => navigate('/student')}
+        onClick={() => navigate('/instructor')}
         className="back-button"
       >
-        Back to Form
+        Logout
       </button>
     </div>
   );
