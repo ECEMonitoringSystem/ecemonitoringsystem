@@ -1,13 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import profileImg from '../Images/profile.png';
-import '../CSS/InstructorsList.css'; // reuse your existing CSS
+import '../CSS/InstructorsList.css';
 
 function ListInstructors() {
   const navigate = useNavigate();
 
-
-  // Sample instructors data
   const instructors = [
     { id: 1, name: 'Dr. Smith', subject: 'Mathematics', isInsideOffice: true, isInClass: false },
     { id: 2, name: 'Prof. Lee', subject: 'Physics', isInsideOffice: false, isInClass: false },
@@ -15,7 +13,6 @@ function ListInstructors() {
   ];
 
   const handleProfileClick = (instructor) => {
-    // Navigate to the instructor profile page with student info
     navigate(`/instructor/${instructor.id}`);
   };
 
