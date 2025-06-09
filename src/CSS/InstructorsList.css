@@ -5,7 +5,7 @@
   background-color: var(--background-color);
   color: var(--text-color);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .instructors-list h2 {
@@ -47,7 +47,7 @@
 }
 
 .instructor-box-button:hover {
-  background-color: rgba(0,0,0,0.05);
+  background-color: rgba(0, 0, 0, 0.05);
   opacity: 0.9;
 }
 
@@ -97,13 +97,18 @@
   border: 2px solid var(--background-color);
   box-sizing: border-box;
 }
+
 .indicator.inside {
-  background-color: #4CAF50; /* Green */
-}
-.indicator.outside {
-  background-color: #F44336; /* Red */
-}
-.indicator.in-class {
-  background-color: #ffc107; /* Blue */
+  background-color: #4CAF50;
+  /* Green */
 }
 
+.indicator.outside {
+  background-color: #F44336;
+  /* Red */
+}
+
+.indicator.in-class {
+  background-color: #ffc107;
+  /* Blue */
+}

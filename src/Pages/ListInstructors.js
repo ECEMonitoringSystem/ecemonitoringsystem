@@ -59,7 +59,7 @@ function ListInstructors() {
         onClick={() => navigate('/instructor')}
         className="back-button"
       >
-        Logout
+        Logout Button
       </button>
     </div>
   );
