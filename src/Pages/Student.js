@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Student.css';
+import logo from '../Images/logo.png';
 
 function Student() {
   const [formData, setFormData] = useState({
@@ -25,59 +26,65 @@ function Student() {
   };
 
   return (
-    <div className="student-container">
-      <div className="header-text">
-        <h1>Welcome, Student!</h1>
-        <p>Please Input your Details for the Reservation of your Appointment</p>
-      </div>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+      </header>
 
-      <form className="student-form" onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+      <div className="student-container">
+        <div className="header-text">
+          <h1>Welcome, Student!</h1>
+          <p>Please Input your Details for the Reservation of your Appointment</p>
         </div>
-        <div className="form-group">
-          <label htmlFor="yearSection">Year & Section</label>
-          <input
-            type="text"
-            id="yearSection"
-            name="yearSection"
-            value={formData.yearSection}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="program">Program</label>
-          <input
-            type="text"
-            id="program"
-            name="program"
-            value={formData.program}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+
+        <form className="student-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="yearSection">Year & Section</label>
+            <input
+              type="text"
+              id="yearSection"
+              name="yearSection"
+              value={formData.yearSection}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="program">Program</label>
+            <input
+              type="text"
+              id="program"
+              name="program"
+              value={formData.program}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
