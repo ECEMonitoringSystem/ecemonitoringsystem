@@ -1,8 +1,4 @@
-/* Student.css */
-
-/* Container aligns content to the left with padding */
-
-.App-header {
+.App-header1 {
   background-color: var(--background-color);
   min-height: 40vh;
   display: flex;
@@ -14,7 +10,7 @@
   text-align: center;
 }
 
-.App-logo {
+.App-logo1 {
   height: 30vmin;
   pointer-events: none;
   animation: App-logo-spin infinite 20s linear;

@@ -39,7 +39,8 @@
   appearance: none;
   -webkit-appearance: none;
   position: relative;
-  padding-right: 40px; /* space for icon */
+  padding-right: 40px;
+  /* space for icon */
   cursor: pointer;
 }
 
@@ -82,7 +83,7 @@
   background-color: var(--background-color);
   color: var(--text-color);
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
@@ -112,15 +113,18 @@
 }
 
 .indicator1.inside {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
+  /* Green */
 }
 
 .indicator1.outside {
-  background-color: #F44336; /* Red */
+  background-color: #F44336;
+  /* Red */
 }
 
 .indicator1.in-class {
-  background-color: #ffc107; /* Amber */
+  background-color: #ffc107;
+  /* Amber */
 }
 
 .instructors-profile-buttons {
@@ -303,4 +307,34 @@
   flex: 1 1 0;
   min-width: 0;
   text-align: center;
+}
+
+.timetable th,
+.timetable td {
+  border: 1px solid var(--input-border);
+  padding: 12px 8px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  line-height: 1.4;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close-button {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-close-button:hover {
+  background-color: #388E3C;
 }

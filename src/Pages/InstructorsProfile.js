@@ -1,4 +1,3 @@
-// InstructorsProfile.js
 import React, { useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import '../CSS/InstructorsProfile.css';
@@ -11,35 +10,65 @@ const instructors = [
 ];
 
 const timetable = {
-  times: ['8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM'],
   days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-  classes: {
-    'Monday-9:00 AM': 'Math',
-    'Tuesday-10:00 AM': 'Physics',
-    'Wednesday-11:00 AM': 'Computer Science',
-  }
+  classes: [
+    {
+      day: 'Monday',
+      subject: 'Math',
+      startTime: '9:15 AM',
+      endTime: '11:30 AM',
+      color: '#4CAF50',
+    },
+    {
+      day: 'Monday',
+      subject: 'English',
+      startTime: '11:30 AM',
+      endTime: '1:30 PM',
+      color: '#a8a432',
+    },
+    {
+      day: 'Tuesday',
+      subject: 'Physics',
+      startTime: '10:00 AM',
+      endTime: '11:00 AM',
+      color: '#2196F3',
+    },
+    {
+      day: 'Wednesday',
+      subject: 'Computer Science',
+      startTime: '11:00 AM',
+      endTime: '12:00 PM',
+      color: '#FFC107',
+    }
+  ]
 };
+
+const timeSlots = [
+  '7:00 AM', '8:00 AM', '9:00 AM', '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM', '2:00 PM',
+  '3:00 PM', '4:00 PM', '5:00 PM', '6:00 PM', '7:00 PM', '8:00 PM', '9:00 PM', '10:00 PM'
+];
+
+function parseTimeToMinutes(timeStr) {
+  const [time, modifier] = timeStr.split(' ');
+  let [hours, minutes] = time.split(':').map(Number);
+  if (modifier === 'PM' && hours !== 12) hours += 12;
+  if (modifier === 'AM' && hours === 12) hours = 0;
+  return hours * 60 + (minutes || 0);
+}
 
 function InstructorsProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Extract student info from location state
   const { studentName, studentEmail } = location.state || {};
 
   const [isScheduleModalOpen, setIsScheduleModalOpen] = useState(false);
   const [isAppointmentModalOpen, setIsAppointmentModalOpen] = useState(false);
-  const [appointmentForm, setAppointmentForm] = useState({
-    concerns: '',
-    schedule: ''
-  });
+  const [appointmentForm, setAppointmentForm] = useState({ concerns: '', schedule: '' });
 
   const instructor = instructors.find(i => i.id === parseInt(id));
-
-  if (!instructor) {
-    return <div>Instructor not found</div>;
-  }
+  if (!instructor) return <div>Instructor not found</div>;
 
   const handleAppointmentChange = (e) => {
     const { name, value } = e.target;
@@ -62,61 +91,24 @@ function InstructorsProfile() {
   return (
     <div className="instructors-profile-page">
       <div className="profile-image-container">
-        <img
-          src={profileImg}
-          alt={instructor.name}
-          className="instructors-profile-image"
-        />
+        <img src={profileImg} alt={instructor.name} className="instructors-profile-image" />
         <span
-          className={`indicator1 ${instructor.isInClass
-            ? 'in-class'
-            : instructor.isInsideOffice
-              ? 'inside'
-              : 'outside'
-            }`}
-          title={
-            instructor.isInClass
-              ? 'In class'
-              : instructor.isInsideOffice
-                ? 'Inside office'
-                : 'Outside office'
-          }
+          className={`indicator1 ${instructor.isInClass ? 'in-class' : instructor.isInsideOffice ? 'inside' : 'outside'}`}
+          title={instructor.isInClass ? 'In class' : instructor.isInsideOffice ? 'Inside office' : 'Outside office'}
         />
       </div>
       <h2>{instructor.name}</h2>
       <p>Subject: {instructor.subject}</p>
-      <div
-        className={`status ${instructor.isInClass
-          ? 'status-in-class'
-          : instructor.isInsideOffice
-            ? 'status-inside'
-            : 'status-outside'
-          }`}
-      >
+      <div className={`status ${instructor.isInClass ? 'status-in-class' : instructor.isInsideOffice ? 'status-inside' : 'status-outside'}`}>
         Status: {instructor.isInClass ? 'In Class' : instructor.isInsideOffice ? 'Inside Office' : 'Outside Office'}
       </div>
-      <div className="instructors-profile-buttons">
-        <button
-          onClick={() => setIsScheduleModalOpen(true)}
-          className="profile-button"
-        >
-          Class Schedule
-        </button>
-        <button
-          onClick={() => setIsAppointmentModalOpen(true)}
-          className="profile-button"
-        >
-          Set an Appointment
-        </button>
-      </div>
-      <button
-        onClick={() => navigate(-1)}
-        className="back-button"
-      >
-        Back to List
-      </button>
 
-      {/* Timetable Modal */}
+      <div className="instructors-profile-buttons">
+        <button onClick={() => setIsScheduleModalOpen(true)} className="profile-button">Class Schedule</button>
+        <button onClick={() => setIsAppointmentModalOpen(true)} className="profile-button">Set an Appointment</button>
+      </div>
+      <button onClick={() => navigate(-1)} className="back-button">Back to List</button>
+
       {isScheduleModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -125,35 +117,99 @@ function InstructorsProfile() {
               <table className="timetable">
                 <thead>
                   <tr>
-                    <th>Time/Day</th>
+                    <th>Time / Day</th>
                     {timetable.days.map(day => <th key={day}>{day}</th>)}
                   </tr>
                 </thead>
                 <tbody>
-                  {timetable.times.map(time => (
-                    <tr key={time}>
-                      <td>{time}</td>
-                      {timetable.days.map(day => (
-                        <td key={`${day}-${time}`}>
-                          {timetable.classes[`${day}-${time}`] || ''}
-                        </td>
-                      ))}
-                    </tr>
-                  ))}
+                  {timeSlots.map(timeSlot => {
+                    const slotStartMinutes = parseTimeToMinutes(timeSlot);
+                    const slotEndMinutes = slotStartMinutes + 60;
+
+                    return (
+                      <tr key={timeSlot}>
+                        <td>{timeSlot}</td>
+                        {timetable.days.map(day => {
+                          const overlappingClasses = timetable.classes.filter(cls => {
+                            const classStart = parseTimeToMinutes(cls.startTime);
+                            const classEnd = parseTimeToMinutes(cls.endTime);
+                            return slotStartMinutes < classEnd && slotEndMinutes > classStart && cls.day === day;
+                          }).sort((a, b) => parseTimeToMinutes(a.startTime) - parseTimeToMinutes(b.startTime));
+
+                          if (overlappingClasses.length === 0) {
+                            return <td key={`${day}-${timeSlot}`}></td>;
+                          }
+
+                          let gradientParts = [];
+                          let lastGradientStop = 0;
+                          let contentToDisplay = '';
+                          let classColor = 'transparent';
+
+                          overlappingClasses.forEach((cls, index) => {
+                            const classStart = parseTimeToMinutes(cls.startTime);
+                            const classEnd = parseTimeToMinutes(cls.endTime);
+                            const segmentStart = Math.max(slotStartMinutes, classStart);
+                            const segmentEnd = Math.min(slotEndMinutes, classEnd);
+                            const startPercent = ((segmentStart - slotStartMinutes) / 60) * 100;
+                            const endPercent = ((segmentEnd - slotStartMinutes) / 60) * 100;
+
+                            if (startPercent > lastGradientStop) {
+                              gradientParts.push(`transparent ${lastGradientStop}%`);
+                              gradientParts.push(`transparent ${startPercent}%`);
+                            }
+
+                            gradientParts.push(`${cls.color} ${startPercent}%`);
+                            gradientParts.push(`${cls.color} ${endPercent}%`);
+                            lastGradientStop = endPercent;
+
+                            const allClassSlots = timeSlots.filter(t => {
+                              const tStart = parseTimeToMinutes(t);
+                              return tStart < classEnd && (tStart + 60) > classStart;
+                            });
+                            const middleIndex = Math.floor(allClassSlots.length / 2);
+                            const middleSlot = allClassSlots[middleIndex];
+
+                            if (timeSlot === middleSlot) {
+                              contentToDisplay = `${cls.subject} (${cls.startTime} - ${cls.endTime})`;
+                              classColor = cls.color;
+                            }
+                          });
+
+                          if (lastGradientStop < 100) {
+                            gradientParts.push(`transparent ${lastGradientStop}%`);
+                            gradientParts.push(`transparent 100%`);
+                          }
+
+                          const backgroundStyle = {
+                            background: `linear-gradient(to bottom, ${gradientParts.join(', ')})`,
+                            color: contentToDisplay ? '#fff' : 'transparent',
+                            fontWeight: 'bold',
+                            textAlign: 'center',
+                            verticalAlign: 'middle',
+                            padding: '8px',
+                            whiteSpace: 'normal',
+                            borderRadius: 0,
+                            boxShadow: 'none',
+                            border: 'none',
+                          };
+
+                          return (
+                            <td key={`${day}-${timeSlot}`} style={backgroundStyle}>
+                              {contentToDisplay}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
-            <button
-              onClick={() => setIsScheduleModalOpen(false)}
-              className="modal-close-button profile-button"
-            >
-              Close
-            </button>
+            <button onClick={() => setIsScheduleModalOpen(false)} className="modal-close-button profile-button">Close</button>
           </div>
         </div>
       )}
 
-      {/* Appointment Modal */}
       {isAppointmentModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -184,16 +240,8 @@ function InstructorsProfile() {
                 />
               </div>
               <div className="modal-buttons">
-                <button type="submit" className="profile-button">
-                  Submit
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsAppointmentModalOpen(false)}
-                  className="profile-button"
-                >
-                  Cancel
-                </button>
+                <button type="submit" className="profile-button">Submit</button>
+                <button type="button" onClick={() => setIsAppointmentModalOpen(false)} className="profile-button">Cancel</button>
               </div>
             </form>
           </div>

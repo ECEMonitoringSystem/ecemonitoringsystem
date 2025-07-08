@@ -26,9 +26,9 @@ function Student() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="Student">
+      <header className="App-header1">
+        <img src={logo} className="App-logo1" alt="logo" />
       </header>
 
       <div className="student-container">

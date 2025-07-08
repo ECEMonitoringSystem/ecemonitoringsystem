@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import '../CSS/InstructorsList.css';
 import profileImg from '../Images/profile.png';
+import logo from '../Images/logo.png';
 
 function InstructorsList() {
   const navigate = useNavigate();
@@ -24,6 +25,11 @@ function InstructorsList() {
 
   return (
     <div className="instructors-list">
+
+      <header className="App-header2">
+        <img src={logo} className="App-logo2" alt="logo" />
+      </header>
+
       <h2>Hi, {studentName}!</h2>
       <p>Available Instructors</p>
       <ul>
