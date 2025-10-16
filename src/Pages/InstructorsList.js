@@ -13,9 +13,9 @@ function InstructorsList() {
   const studentEmail = location.state?.studentEmail || '';
 
   const instructors = [
-    { id: 1, name: 'Dr. Smith', subject: 'Mathematics', isInsideOffice: true, isInClass: false },
-    { id: 2, name: 'Prof. Lee', subject: 'Physics', isInsideOffice: false, isInClass: false },
-    { id: 3, name: 'Dr. Garcia', subject: 'Computer Science', isInsideOffice: true, isInClass: true }
+    { id: 1, name: 'Dr. Smith', isInsideOffice: true, isInClass: false },
+    { id: 2, name: 'Prof. Lee', isInsideOffice: false, isInClass: false },
+    { id: 3, name: 'Dr. Garcia', isInsideOffice: true, isInClass: true }
   ];
 
   const handleProfileClick = (instructor) => {
@@ -62,7 +62,7 @@ function InstructorsList() {
                 ></span>
               </div>
               <div className="instructor-info">
-                <strong>{instructor.name}</strong> - {instructor.subject}
+                <strong>{instructor.name}</strong>
               </div>
             </button>
           </li>
