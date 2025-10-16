@@ -62,13 +62,12 @@ function ListInstructors() {
                   className="instructor-profile"
                 />
                 <span
-                  className={`indicator ${
-                    instructor.isInClass
+                  className={`indicator ${instructor.isInClass
                       ? 'in-class'
                       : instructor.isInsideOffice
                         ? 'inside'
                         : 'outside'
-                  }`}
+                    }`}
                   title={
                     instructor.isInClass
                       ? 'In class'

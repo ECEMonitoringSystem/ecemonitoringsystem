@@ -4,9 +4,12 @@
 .instructor-container {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center;     /* horizontal center */
-  height: 100vh;           /* full viewport height */
+  justify-content: center;
+  /* vertical center */
+  align-items: center;
+  /* horizontal center */
+  height: 100vh;
+  /* full viewport height */
   padding: 20px;
   box-sizing: border-box;
   background-color: var(--background-color);
@@ -29,7 +32,7 @@
   padding: 20px;
   border-radius: 8px;
   box-sizing: border-box;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
   /* Hint browser to adapt native controls */
   color-scheme: light dark;
@@ -96,24 +99,47 @@
     background-color: var(--background-color);
     color: var(--text-color);
   }
+
   .login-form {
     background-color: var(--form-bg);
   }
+
   .login-form input {
     background-color: var(--input-bg);
     color: var(--text-color);
     border-color: var(--input-border);
   }
+
   .login-form button {
     background-color: var(--button-bg);
   }
+
   .login-form button:hover {
     background-color: var(--button-hover-bg);
   }
+
   .link-button {
     color: var(--link-color);
   }
+
   .link-button:hover {
     color: var(--link-hover-color);
+  }
+}
+
+.app-logo {
+  width: 150px;
+  display: block;
+  margin: 0 auto 20px auto;
+  animation: App-logo-spin infinite 20s linear;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

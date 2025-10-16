@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import '../CSS/Instructor.css';
+import logo from '../Images/logo.png'; // Import the app logo image
 
 function Instructor() {
   // State to control which view is shown: 'login' | 'forgot' | 'register'
@@ -14,7 +15,7 @@ function Instructor() {
     name: '',
   });
 
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -25,7 +26,7 @@ function Instructor() {
 
     if (view === 'login') {
       if (formData.email && formData.password) {
-        // Navigate to instructor profile page, passing email or id as param or state
+        // Navigate to instructor profile page, passing email as param and state
         navigate(`/list-instructors/${encodeURIComponent(formData.email)}`, { state: { email: formData.email } });
       } else {
         alert('Please enter email and password.');
@@ -39,7 +40,6 @@ function Instructor() {
         formData.confirmPassword
       ) {
         if (formData.password === formData.confirmPassword) {
-          // Registration success simulation
           alert('Registration successful! Please log in.');
           setFormData({
             email: '',
@@ -60,9 +60,15 @@ function Instructor() {
     }
   };
 
+  // Render shared logo above any form view
+  const renderLogo = () => (
+    <img src={logo} alt="App Logo" className="app-logo" />
+  );
+
   if (view === 'login') {
     return (
       <div className="instructor-container">
+        {renderLogo()}
         <h1>Instructor Login</h1>
         <form onSubmit={handleSubmit} className="login-form">
           <input
@@ -94,6 +100,7 @@ function Instructor() {
   if (view === 'forgot') {
     return (
       <div className="instructor-container">
+        {renderLogo()}
         <h1>Forgot Password</h1>
         <form onSubmit={handleSubmit} className="login-form">
           <input
@@ -114,6 +121,7 @@ function Instructor() {
   if (view === 'register') {
     return (
       <div className="instructor-container">
+        {renderLogo()}
         <h1>Register</h1>
         <form onSubmit={handleSubmit} className="login-form">
           <input
@@ -155,7 +163,7 @@ function Instructor() {
     );
   }
 
-  // Optional fallback (should never reach here)
+  // Fallback (should not reach here)
   return null;
 }
 
