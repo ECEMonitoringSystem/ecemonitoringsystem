@@ -6,7 +6,7 @@ import Student from './Pages/Student';
 import Instructor from './Pages/Instructor';
 import InstructorsList from './Pages/InstructorsList';
 import InstructorsProfile from './Pages/InstructorsProfile'; // fixed typo from InsturctorsProfile
-import ListInstructors from './Pages/ListInstructors'; // renamed import
+import Dashboard from './Pages/Dashboard';
 
 function Home() {
   const navigate = useNavigate();
@@ -23,6 +23,8 @@ function Home() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        {/* --- THIS IS THE LINE YOU ADDED --- */}
+        <h1>ECE Appointment System</h1>
 
         <div className="button-group-vertical">
           <button className="styled-button" onClick={goToStudentPage}>
@@ -77,7 +79,7 @@ function App() {
         <Route path="/instructor" element={<Instructor />} />
         <Route path="/instructors-list" element={<InstructorsList />} />
         <Route path="/instructor/:id" element={<InstructorsProfile />} />
-        <Route path="/list-instructors/:email" element={<ListInstructors />} /> {/* updated route */}
+        <Route path="/dashboard/:email" element={<Dashboard />} />
       </Routes>
     </Router>
   );

@@ -12,7 +12,17 @@
   font-size: calc(10px + 2vmin);
   color: var(--text-color);
   text-align: center;
-  gap: 15vh;
+  /* gap: 15vh; <-- 1. REMOVE THIS LINE */
+}
+
+/* 2. ADD THIS NEW RULE for the h1 */
+.App-header h1 {
+  margin-top: 1rem;
+  /* Small space below the logo */
+  margin-bottom: 15vh;
+  /* Large space above the buttons */
+  font-size: 1.5em;
+  /* You can adjust the size as you like */
 }
 
 .styled-button {
@@ -57,5 +67,5 @@
   flex-direction: column;
   gap: 12px;
   width: 200px;
-  margin-top: 12px;
+  /* margin-top: 12px; <-- 3. REMOVE THIS LINE */
 }
