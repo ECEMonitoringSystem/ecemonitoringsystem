@@ -1,28 +1,16 @@
-// Student.js
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import '../CSS/Student.css';
 import logo from '../Images/logo.png';
 
 function Student() {
-  const [formData, setFormData] = useState({
-    name: '',
-    yearSection: '',
-    program: '',
-    email: '',
-  });
-
+  const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Pass both studentName and studentEmail to instructors list page
-    navigate('/instructors-list', { state: { studentName: formData.name, studentEmail: formData.email } });
+  const onSubmit = (data) => {
+    // Pass full student data object to instructors list page
+    navigate('/instructors-list', { state: { student: data } });
   };
 
   return (
@@ -37,49 +25,45 @@ function Student() {
           <p>Please Input your Details for the Reservation of your Appointment</p>
         </div>
 
-        <form className="student-form" onSubmit={handleSubmit}>
+        <form className="student-form" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
+              {...register("name", { required: true })}
               type="text"
               id="name"
               name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
+              placeholder="Full Name"
             />
           </div>
           <div className="form-group">
             <label htmlFor="yearSection">Year & Section</label>
             <input
+              {...register("yearSection", { required: true })}
               type="text"
               id="yearSection"
               name="yearSection"
-              value={formData.yearSection}
-              onChange={handleChange}
-              required
+              placeholder="Year & Section (e.g., 3-1)"
             />
           </div>
           <div className="form-group">
             <label htmlFor="program">Program</label>
             <input
+              {...register("program", { required: true })}
               type="text"
               id="program"
               name="program"
-              value={formData.program}
-              onChange={handleChange}
-              required
+              placeholder="Program (e.g., BSECE)"
             />
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
+              {...register("email", { required: true })}
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
+              placeholder="Email"
             />
           </div>
           <button type="submit">Submit</button>
