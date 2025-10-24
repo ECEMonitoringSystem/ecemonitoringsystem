@@ -91,9 +91,9 @@ function InstructorsList() {
       </header>
 
       {/* This is the correct line. It looks for 'student.student_name'.
-        If it's showing "Student", it means 'student.student_name' was empty
-        or the Student.js form is not sending the data correctly.
-      */}
+        If it's showing "Student", it means 'student.student_name' was empty
+        or the Student.js form is not sending the data correctly.
+      */}
       <h2>Hi, {student?.name || 'Student'}!</h2>
       <p>Available Instructors</p>
       <ul>
@@ -110,21 +110,23 @@ function InstructorsList() {
                   alt="Profile"
                   className="instructor-profile"
                 />
+                {/* --- THIS IS THE CORRECTED BLOCK --- */}
                 <span
-                  className={`indicator ${instructor.status === 'in class'
-                    ? 'in-class' // Your CSS class
-                    : instructor.status === 'in office'
-                      ? 'inside' // Your CSS class
-                      : 'outside' // Your CSS class
+                  className={`indicator ${instructor.availability === 'in_office'
+                    ? 'inside' // Green dot
+                    : instructor.availability === 'in_class'
+                      ? 'in-class' // Yellow dot
+                      : 'outside' // Red dot (for 'absent')
                     }`}
                   title={
-                    instructor.status === 'in class'
-                      ? 'In class'
-                      : instructor.status === 'in office'
-                        ? 'Inside office'
-                        : 'Outside office'
+                    instructor.availability === 'in_office'
+                      ? 'Inside Office'
+                      : instructor.availability === 'in_class'
+                        ? 'In Class'
+                        : 'Absent'
                   }
                 ></span>
+                {/* --- END CORRECTED BLOCK --- */}
               </div>
               <div className="instructor-info">
                 <strong>{instructor.name}</strong>

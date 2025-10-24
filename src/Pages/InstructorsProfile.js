@@ -5,9 +5,6 @@ import toast, { Toaster } from 'react-hot-toast'; // Import toast
 import '../CSS/InstructorsProfile.css';
 import profileImg from '../Images/profile.png';
 
-// The hardcoded instructors array is no longer needed
-// const instructors = [ ... ];
-
 function InstructorsProfile() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -91,39 +88,39 @@ function InstructorsProfile() {
           alt={instructor.name}
           className="instructors-profile-image"
         />
-        {/* Use instructor.status from Supabase data */}
+        {/* --- THIS IS FIX #1 --- */}
         <span
-          className={`indicator1 ${instructor.status === 'in class'
-              ? 'in-class'
-              : instructor.status === 'in office'
-                ? 'inside'
-                : 'outside'
+          className={`indicator1 ${instructor.availability === 'in_office'
+            ? 'inside' // Green
+            : instructor.availability === 'in_class'
+              ? 'in-class' // Yellow
+              : 'outside' // Red
             }`}
           title={
-            instructor.status === 'in class'
-              ? 'In class'
-              : instructor.status === 'in office'
-                ? 'Inside office'
-                : 'Outside office'
+            instructor.availability === 'in_office'
+              ? 'Inside Office'
+              : instructor.availability === 'in_class'
+                ? 'In Class'
+                : 'Absent'
           }
         ></span>
       </div>
       <h2>{instructor.name}</h2>
-      {/* Use instructor.status from Supabase data */}
+      {/* --- THIS IS FIX #2 --- */}
       <div
-        className={`status ${instructor.status === 'in class'
-            ? 'status-in-class'
-            : instructor.status === 'in office'
-              ? 'status-inside'
-              : 'status-outside'
+        className={`status ${instructor.availability === 'in_office'
+          ? 'status-inside' // Green
+          : instructor.availability === 'in_class'
+            ? 'status-in-class' // Yellow
+            : 'status-outside' // Red
           }`}
       >
         Status:{' '}
-        {instructor.status === 'in class'
-          ? 'In Class'
-          : instructor.status === 'in office'
-            ? 'Inside Office'
-            : 'Outside Office'}
+        {instructor.availability === 'in_office'
+          ? 'Inside Office'
+          : instructor.availability === 'in_class'
+            ? 'In Class'
+            : 'Absent'}
       </div>
 
       <div className="instructors-profile-buttons">
@@ -205,4 +202,3 @@ function InstructorsProfile() {
 }
 
 export default InstructorsProfile;
-

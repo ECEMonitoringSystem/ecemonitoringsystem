@@ -66,12 +66,10 @@ function Instructor() {
       }
 
       // ✅ Step 4: Successful login
-      // --- THIS IS THE UPDATED LINE ---
-      navigate(`/dashboard/${formData.email}`); // redirect to dashboard with email
+      navigate('/dashboard'); // Use the correct dashboard route
       // No need to setLoading(false) since we are navigating away
-    } else if (view === 'register') {
-      // --- New Supabase Registration Logic ---
 
+    } else if (view === 'register') {
       // 0. Check if passwords match
       if (formData.password !== formData.confirmPassword) {
         setMessage('Passwords do not match.');
@@ -111,7 +109,6 @@ function Instructor() {
           email: formData.email,
           department: 'ECE', // default value
           verified: false, // Admin must approve
-          status: 'pending', // start as pending
           availability: 'in_office', // default value
         },
       ]);
@@ -133,12 +130,16 @@ function Instructor() {
         });
         setView('login');
       }
+
     } else if (view === 'forgot') {
-      // --- THIS IS THE UPDATED FORGOT PASSWORD LOGIC ---
+      // --- THIS IS THE CORRECTED FORGOT PASSWORD LOGIC ---
       const { error } = await supabase.auth.resetPasswordForEmail(
         formData.email,
         {
-          redirectTo: window.location.origin + '/reset-password', // URL your users will be redirected to after clicking the link
+          // Optional: Where to redirect the user after they click the email link.
+          // You'll need to create a page/route at '/reset-password' to handle
+          // the user setting a new password.
+          redirectTo: window.location.origin + '/reset-password',
         }
       );
 
@@ -147,9 +148,11 @@ function Instructor() {
       } else {
         setMessage('Password reset email sent! Check your inbox.');
       }
-      setLoading(false);
+      setLoading(false); // Make sure loading stops
+      // --- END CORRECTED LOGIC ---
     }
   };
+
 
   // Render shared logo above any form view
   const renderLogo = () => (
