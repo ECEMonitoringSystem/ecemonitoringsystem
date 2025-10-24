@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import logo from '././Images/logo.png';
+// Simplified logo path - assumes Images folder is directly inside src
+import logo from './Images/logo.png';
+// Assumes CSS folder is directly inside src
 import './CSS/App.css';
+// Assumes Pages folder is directly inside src
 import Student from './Pages/Student';
 import Instructor from './Pages/Instructor';
 import InstructorsList from './Pages/InstructorsList';
-import InstructorsProfile from './Pages/InstructorsProfile'; // fixed typo from InsturctorsProfile
-import ListInstructors from './Pages/ListInstructors'; // renamed import
+import InstructorsProfile from './Pages/InstructorsProfile';
+import Dashboard from './Pages/Dashboard';
+import ResetPasswordPage from './Pages/ResetPasswordPage'; // <-- Import the new component
 
 function Home() {
   const navigate = useNavigate();
@@ -23,7 +27,7 @@ function Home() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-
+        <h1>ECE Appointment System</h1>
         <div className="button-group-vertical">
           <button className="styled-button" onClick={goToStudentPage}>
             STUDENT
@@ -32,7 +36,6 @@ function Home() {
             INSTRUCTOR
           </button>
         </div>
-
       </header>
     </div>
   );
@@ -56,7 +59,6 @@ function DarkModeHandler() {
       bodyClass.remove(className);
     }
 
-    // Listen for system dark mode changes
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handler = e => setIsDark(e.matches);
     mediaQuery.addEventListener('change', handler);
@@ -64,7 +66,7 @@ function DarkModeHandler() {
     return () => mediaQuery.removeEventListener('change', handler);
   }, [isDark]);
 
-  return null; // This component does not render anything
+  return null;
 }
 
 function App() {
@@ -77,10 +79,14 @@ function App() {
         <Route path="/instructor" element={<Instructor />} />
         <Route path="/instructors-list" element={<InstructorsList />} />
         <Route path="/instructor/:id" element={<InstructorsProfile />} />
-        <Route path="/list-instructors/:email" element={<ListInstructors />} /> {/* updated route */}
+        {/* Make sure dashboard route does NOT have :email */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        {/* --- ADD THIS NEW ROUTE --- */}
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Routes>
     </Router>
   );
 }
 
 export default App;
+

@@ -1,0 +1,357 @@
+/* Dashboard.css */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 1rem;
+}
+
+.dashboard-loading {
+  display: flex;
+  flex-direction: column;
+  /* Stack "Loading" and "Logout" */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  color: var(--text-color);
+}
+
+/* --- Navigation Bar --- */
+.dashboard-nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.logout-button:hover {
+  color: #dc3545;
+  /* Red hover for logout */
+}
+
+/* --- Main Content Area --- */
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.dashboard-logo {
+  height: 25vmin;
+  /* Smaller than the App.js logo */
+  max-height: 200px;
+  pointer-events: none;
+  /* --- SPINNING LOGO ANIMATION --- */
+  animation: App-logo-spin infinite 20s linear;
+}
+
+/* You must have @keyframes App-logo-spin in your App.css or index.css */
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.dashboard-content h1 {
+  font-size: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* --- Status Buttons --- */
+.status-controls {
+  display: flex;
+  flex-wrap: wrap;
+  /* Allows buttons to stack on small screens */
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.status-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  /* White text for all buttons */
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-width: 150px;
+  opacity: 0.7;
+  /* Make non-active buttons slightly faded */
+}
+
+/* Specific colors from your prototype */
+.status-btn.inside {
+  background-color: #28a745;
+  /* Green */
+}
+
+.status-btn.in-class {
+  background-color: #ffc107;
+  /* Yellow */
+  color: #212529;
+  /* Dark text for yellow button */
+}
+
+.status-btn.absent {
+  background-color: #dc3545;
+  /* Red */
+}
+
+/* Style for the 'active' button */
+.status-btn.active {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Appointments Section --- */
+.appointments-section {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+}
+
+.appointments-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+/* THIS IS THE GRAY BOX from your prototype */
+.appointments-list-box {
+  width: 100%;
+  min-height: 300px;
+  /* --- THIS IS THE FIX --- */
+  background-color: #E9ECEF;
+  /* A light, neutral gray */
+  border: 1px solid var(--button-border);
+  border-radius: 8px;
+  padding: 1rem;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+/* --- ADDED THIS RULE FOR DARK MODE --- */
+.dark .appointments-list-box {
+  background-color: #343a40;
+  /* A dark gray */
+  border-color: #6c757d;
+}
+
+.no-appointments {
+  color: var(--text-color);
+  opacity: 0.7;
+  text-align: center;
+  margin-top: 2rem;
+  font-style: italic;
+}
+
+/* ===============================================
+--- NEW STYLES (from your prompt) ---
+===============================================
+*/
+
+/* New styles for the appointments list INSIDE the box */
+.appointments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  /* 12px */
+}
+
+.appointment-item {
+  padding: 0.75rem;
+  /* 12px */
+  border: 1px solid var(--button-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  /* Use a light background to contrast with the gray box */
+  background-color: var(--background-color, #ffffff);
+}
+
+/* Specific styles from your test file */
+.appointment-item.pending {
+  background-color: #fefce8;
+  /* Tailwind bg-yellow-50 */
+  border-color: #fde047;
+  /* Tailwind yellow-300 */
+}
+
+.appointment-item.pending:hover {
+  background-color: #fef9c3;
+  /* Tailwind bg-yellow-100 */
+}
+
+.appointment-item.read {
+  background-color: #f0fdf4;
+  /* Tailwind bg-green-50 */
+  border-color: #86efac;
+  /* Tailwind green-300 */
+}
+
+.appointment-item.read:hover {
+  background-color: #dcfce7;
+  /* Tailwind bg-green-100 */
+}
+
+/* Dark mode compatibility for list items */
+.dark .appointment-item {
+  background-color: #495057;
+  /* A dark gray, lighter than the box */
+  border-color: #6c757d;
+}
+
+.dark .appointment-item.pending {
+  background-color: #4f460a;
+  border-color: #713f12;
+}
+
+.dark .appointment-item.read {
+  background-color: #14532d;
+  border-color: #166534;
+}
+
+
+.appointment-info {
+  font-weight: 600;
+  color: var(--text-color, #374151);
+}
+
+.appointment-status-text {
+  font-size: 0.75rem;
+  /* 12px */
+  color: var(--text-color);
+  opacity: 0.7;
+  text-transform: capitalize;
+}
+
+/* --- New Modal Styles --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: var(--background-color, #ffffff);
+  color: var(--text-color, #000000);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  /* 24px */
+  width: 90%;
+  max-width: 420px;
+  position: relative;
+}
+
+.modal-content h3 {
+  font-size: 1.25rem;
+  /* 20px */
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.modal-content p {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+.modal-content p strong {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.modal-status-text {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  text-transform: capitalize;
+}
+
+.modal-status-text .pending {
+  color: #ca8a04;
+  /* Tailwind text-yellow-600 */
+  font-weight: 600;
+}
+
+.modal-status-text .read {
+  color: #16a34a;
+  /* Tailwind text-green-600 */
+  font-weight: 600;
+}
+
+.modal-close-btn-x {
+  position: absolute;
+  top: 0.5rem;
+  /* 8px */
+  right: 0.75rem;
+  /* 12px */
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.modal-close-btn-x:hover {
+  color: #000000;
+}
+
+/* Dark mode compatibility for X button */
+.dark .modal-close-btn-x {
+  color: #9ca3af;
+}
+
+.dark .modal-close-btn-x:hover {
+  color: #ffffff;
+}
+
+.modal-actions {
+  margin-top: 1rem;
+  text-align: right;
+}
+
+.modal-close-btn {
+  /* CHANGED TO GRAY */
+  background-color: #6c757d;
+  /* A common gray color */
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-close-btn:hover {
+  /* Darker gray on hover */
+  background-color: #5a6268;
+}
