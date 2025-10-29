@@ -7,6 +7,10 @@ COPY ./ /usr/local/app/
 RUN --mount=type=cache,target=/tmp/.npm \
     --mount=type=cache,target=/tmp/.node \
     npm ci --save-dev --cache /tmp/.npm --prefer-offline
+
+ARG REACT_APP_SUPABASE_URL
+ARG REACT_APP_SUPABASE_ANON_KEY
+
 RUN npm run build
 
 FROM nginx:latest
