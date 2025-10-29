@@ -17,4 +17,4 @@ RUN --mount=type=cache,target=/tmp/.npm \
     npm ci --save-dev --cache /tmp/.npm --prefer-offline
 
 # Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 5173
