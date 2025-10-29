@@ -1,6 +1,6 @@
 services:
   app:
-    image: git.06222001.xyz/keannu125/ecemonitoringsystem:latest
+    build: .
     env_file: .env
     ports:
       - "${PORT:-8000}:80"
