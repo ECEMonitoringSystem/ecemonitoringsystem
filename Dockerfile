@@ -16,5 +16,7 @@ RUN --mount=type=cache,target=/tmp/.npm \
     --mount=type=cache,target=/tmp/.node \
     npm ci --save-dev --cache /tmp/.npm --prefer-offline
 
+RUN npm i -g serve
+
 # Expose the port the app runs on
 EXPOSE 8000
