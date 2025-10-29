@@ -1,11 +1,13 @@
+version: "3.8"
+
 services:
-  app:
-    build:
-      context: .
-      args:
-        REACT_APP_SUPABASE_URL: ${REACT_APP_SUPABASE_URL}
-        REACT_APP_SUPABASE_ANON_KEY: ${REACT_APP_SUPABASE_ANON_KEY}
-    image: git.06222001.xyz/keannu125/ecemonitoringsystem:latest
-    env_file: .env
+  frontend:
+    build: .
+    working_dir: /src
+    volumes:
+      - .:/src
+      - /src/node_modules
     ports:
-      - "${PORT:-8000}:80"
+      - "${PORT:-8000}:5173"
+    command: npm run dev -- --host
+    restart: always

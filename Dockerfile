@@ -1,18 +1,17 @@
-FROM node:23-alpine AS build
+# Use an official Node.js runtime as a parent image
+FROM node:23-alpine
 
-WORKDIR /usr/local/app
-COPY ./ /usr/local/app/
+# Set the working directory
+WORKDIR /src
 
-# Use npm cache located at /tmp/.npm and node_modules cache at /tmp/.node
-RUN --mount=type=cache,target=/tmp/.npm \
-    --mount=type=cache,target=/tmp/.node \
-    npm ci --save-dev --cache /tmp/.npm --prefer-offline
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-RUN npm run build
+# Copy the rest of the application code
+COPY . .
 
-FROM nginx:latest
-RUN rm -rf /usr/share/nginx/html/*
-COPY --from=build /usr/local/app/build/ /usr/share/nginx/html
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+# Install dependencies
+RUN npm install
 
-EXPOSE 80
+# Expose the port the app runs on
+EXPOSE 5000
