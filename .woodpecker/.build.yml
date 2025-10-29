@@ -13,8 +13,12 @@ steps:
         from_secret: FORGEJO_REGISTRY_PASSWORD
       REGISTRY_IMAGE_TAG:
         from_secret: REGISTRY_IMAGE_TAG
+      REACT_APP_SUPABASE_URL:
+        from_secret: REACT_APP_SUPABASE_URL
+      REACT_APP_SUPABASE_ANON_KEY:
+        from_secret: REACT_APP_SUPABASE_ANON_KEY
     commands:
-      - docker build -t "$REGISTRY_IMAGE_TAG" . --secret REACT_APP_SUPABASE_URL="$REACT_APP_SUPABASE_URL" --secret REACT_APP_SUPABASE_ANON_KEY="$REACT_APP_SUPABASE_ANON_KEY"
+      - docker build -t "$REGISTRY_IMAGE_TAG" . --build-arg REACT_APP_SUPABASE_URL="$REACT_APP_SUPABASE_URL" --build-arg REACT_APP_SUPABASE_ANON_KEY="$REACT_APP_SUPABASE_ANON_KEY"
       - echo "$FORGEJO_REGISTRY_PASSWORD" | docker login "$FORGEJO_REGISTRY_URL" --password-stdin -u "$FORGEJO_REGISTRY_USERNAME"
       - docker push "$REGISTRY_IMAGE_TAG"
     volumes:
