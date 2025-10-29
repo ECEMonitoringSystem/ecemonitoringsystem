@@ -6,8 +6,7 @@ services:
     working_dir: /src
     volumes:
       - .:/src
-      - /src/node_modules
     ports:
       - "${PORT:-8000}:8000"
-    command: serve -s build -l 8000
+    command: npm run build && serve -s build -l 8000
     restart: always
