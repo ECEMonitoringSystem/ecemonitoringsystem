@@ -2,6 +2,7 @@ FROM node:23-alpine AS build
 
 WORKDIR /usr/local/app
 COPY ./ /usr/local/app/
+
 # Use npm cache located at /tmp/.npm and node_modules cache at /tmp/.node
 RUN --mount=type=cache,target=/tmp/.npm \
     --mount=type=cache,target=/tmp/.node \
