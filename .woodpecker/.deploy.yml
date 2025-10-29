@@ -21,10 +21,8 @@ steps:
         cd "$PROJECT_DIRECTORY";
         docker-compose down;
         docker image rm "$REGISTRY_IMAGE_TAG" || true;
-        wget -O docker-compose.yml ""$DOCKER_COMPOSE_URL"";
-        docker pull "$REGISTRY_IMAGE_TAG";
-        docker-compose up -d;
-        docker image prune -af;"
+        git restore . && git pull origin "$CI_COMMIT_BRANCH";
+        docker-compose up -d;"
   - name: discord
     image: appleboy/drone-discord
     settings:
@@ -43,8 +41,3 @@ when:
     event:
       - push
       - manual
-
-depends_on:
-  - build
-
-skip_clone: true
