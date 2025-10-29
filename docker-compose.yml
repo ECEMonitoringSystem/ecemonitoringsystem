@@ -9,5 +9,5 @@ services:
       - /src/node_modules
     ports:
       - "${PORT:-8000}:5173"
-    command: npm run dev -- --host
+    command: npm start
     restart: always
