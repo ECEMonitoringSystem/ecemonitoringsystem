@@ -10,8 +10,6 @@ steps:
         from_secret: SSH_KEY
       REGISTRY_IMAGE_TAG:
         from_secret: REGISTRY_IMAGE_TAG
-      DOCKER_VOLUME_DB:
-        from_secret: DOCKER_VOLUME_DB
       DOCKER_COMPOSE_URL:
         from_secret: DOCKER_COMPOSE_URL
     commands:
@@ -31,9 +29,9 @@ steps:
     image: appleboy/drone-discord
     settings:
       webhook_id:
-        from_secret: DISCORD_WEBHOOK_ID
+        from_secret: SERVICE_QUEUE_DISCORD_WEBHOOK_ID
       webhook_token:
-        from_secret: DISCORD_WEBHOOK_TOKEN
+        from_secret: SERVICE_QUEUE_DISCORD_WEBHOOK_TOKEN
       message: >
         {{#success build.status}}
           {{repo.name}}: Deployment step for build #{{build.number}} outputs {{build.status}}
