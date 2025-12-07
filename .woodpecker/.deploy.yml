@@ -35,10 +35,19 @@ steps:
         from_secret: SERVICE_QUEUE_DISCORD_WEBHOOK_TOKEN
       message: >
         {{#success build.status}}
-          {{repo.name}}: Deployment step for build #{{build.number}} outputs {{build.status}}
+          ✅ [{{repo.name}}] Successful deployment for build #{{build.number}}
+          Branch: {{commit.branch}}
+          Commit: {{commit.sha}}:{{commit.message}}
+          By: {{commit.author}}
+        {{else}}
+          ❌ [{{repo.name}}] Failed deployment for build #{{build.number}}
+          Branch: {{commit.branch}}
+          Commit: {{commit.sha}}:{{commit.message}}
+          By: {{commit.author}}
         {{/success}}
-    depends_on: deploy
-
+    when:
+      status: [ success, failure ]
+      
 when:
   - branch: master
     event:
